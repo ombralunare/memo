@@ -108,6 +108,11 @@ button
     cursor: pointer;
 }
 
+button i
+{
+    font-size: 20px;
+    font-weight: bold;
+}
 
 #cardName
 {
