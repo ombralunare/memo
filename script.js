@@ -66,4 +66,23 @@
     refresh();
 
 
+    */ remove a card */
+    
+    document.getElementById("cardButnDel").addEventListener("click", function(binCard)   
+    {   
+        let result = "";    */ returns a new card ... hopefully */
+        let "cardButnDel" = localStorage.removeItem("card");
+        Object.keys(card).forEach((item)=>
+        {
+            if (!!filter && !item.startsWith(filter)){ return };
+            let card = document.createElement("card");
+            card.innerHTML = item;
+            viewCell.appendChild(card);
+
+            refresh();
+            return(result);
+        });
+    }:
+
+
     
