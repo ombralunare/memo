@@ -75,7 +75,7 @@
             if (!!filter && !item.startsWith(filter)){ return };
             let card = document.createElement("card");
             card.innerHTML = item;
-            viewCell.appendChild(card);
+            viewCell.appendChild("card");
         });
     });
-        return;
+        return(result);
