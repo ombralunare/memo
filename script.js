@@ -78,4 +78,4 @@
             viewCell.appendChild("card");
         });
     });
-        return(result);
+        return();
