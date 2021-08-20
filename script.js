@@ -42,7 +42,9 @@
 
         if (nameText < 2)
         {
-            alert("try again! ...invalid card name");
+
+            alert("try again... invalid card name!");
+
             return;
         };
 
@@ -65,4 +67,4 @@
 
     refresh();
 
-        return();
+return();
