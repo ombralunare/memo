@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>Ricordami</title>
         <link rel="stylesheet" href="style.css"></link>
         <link rel="stylesheet" href="icomoon.css"></link>
         <script type="module" src="script.js"></script>
@@ -16,25 +16,24 @@
                                 <gcol>
                                     <input id="cardName" placeholder="card"></input>
                                     <section>
-                                        <article>
-                                            <input id="cardDesc" placeholder=""></input>
-                                        </article>
+                         <article class="descr">
+                                     <input id="cardDesc" placeholder=""></input>                           </article>
                                     </section>
                                 </gcol>
                                 <gcol id="cardButnCell">
-                                    <button id="cardButn">plus-icon</button>
-                                    <button id="cardButn">delete-icon</button>
+                                     <button id="cardButn">
+                                        <i class="icon-plus"></i>
+                                    </button>
                                 </gcol>
+                                <gcol id="cardButnCell">    
+                                    <button id="cardToss">    
+                                        <i class="icon-delete"></i>
+                                  </button>                        </gcol>
                             </grow>
                         </grid>
                     </gcol>
                 </grow>
-                <grow id="viewZone">
-                    <gcol id="viewCell">
-                    </gcol>
-                </grow>
-            </grid>
-            <grid id="mainGrid">
+                <grid id="mainGrid">
                 <grow id="formZone">
                     <gcol id="formCell">
                         <grid id="formGrid">
@@ -43,23 +42,20 @@
                                     <input id="cardName" placeholder="card"></input>
                                     <section>
                                         <article>
-                                            <input id="cardDesc" placeholder="todo"></input>
+                                            <input id="cardDesc" placeholder=""></input>
                                         </article>
                                     </section>
                                 </gcol>
                                 <gcol id="cardButnCell">
                                     <button id="cardButn">plus-icon</button>
-                                    <button id="cardButn">delete-icon</button>
+                                </gol>
+                                <gcol id="cardButnCell">
+                                    <button id="cardToss">delete-icon</button>
                                 </gcol>
                             </grow>
                         </grid>
                     </gcol>
-                </grow>
-                <grow id="viewZone">
-                    <gcol id="viewCell">
-                    </gcol>
-                </grow>
-            </grid>
+                </grid>
 <grid id="mainGrid">
                 <grow id="formZone">
                     <gcol id="formCell">
@@ -69,27 +65,12 @@
                                     <input id="cardName" placeholder="card"></input>
                                     <section>
                                         <article>
-                                            <input id="cardDesc" placeholder="todo"></input>
-                                        </article>
-                                    </section><section>
-                                        <article>
-                                            <input id="cardDesc" placeholder="todo"></input>
+                                            <input id="cardDesc" placeholder=""></input>
                                         </article>
                                     </section>
                                 </gcol>
-                                <gcol id="cardButnCell">
-                                    <button id="cardButn">plus-icon</button>
-                                    <button id="cardButn">delete-icon</button>
-                                </gcol>
-                            </grow>
+                                </grow>
                         </grid>
-                    </gcol>
-                </grow>
-                <grow id="viewZone">
-                    <gcol id="viewCell">
-                    </gcol>
-                </grow>
-            </grid>
         </layer>
     </body>
 </html>
