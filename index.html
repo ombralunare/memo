@@ -3,7 +3,7 @@
     <head>
         <title>Ricordami</title>
         <link rel="stylesheet" href="style.css"></link>
-        <link rel="stylesheet" href="icomoon.css"></link>
+        <link rel="stylesheet" href="icomoon.css"></link>       
         <script type="module" src="script.js"></script>
     </head>
     <body>
@@ -16,23 +16,27 @@
                                 <gcol>
                                     <input id="cardName" placeholder="card"></input>
                                     <section>
-                         <article class="descr">
-                                     <input id="cardDesc" placeholder=""></input>                           </article>
+                                        <article class="descr">
+                                            <input id="cardDesc" placeholder=""></input>   
+                                        </article>
                                     </section>
                                 </gcol>
                                 <gcol id="cardButnCell">
                                      <button id="cardButn">
-                                        <i class="icon-plus"></i>
+                                        <i class="icomoon-icon-plus"></i>
                                     </button>
                                 </gcol>
                                 <gcol id="cardButnCell">    
                                     <button id="cardToss">    
-                                        <i class="icon-delete"></i>
-                                  </button>                        </gcol>
+                                        <i class="icomoon-icon-delete"></i>
+                                    </button>
+                                </gcol>
                             </grow>
                         </grid>
                     </gcol>
                 </grow>
+            </layer>
+            <layer>
                 <grid id="mainGrid">
                 <grow id="formZone">
                     <gcol id="formCell">
@@ -47,30 +51,34 @@
                                     </section>
                                 </gcol>
                                 <gcol id="cardButnCell">
-                                    <button id="cardButn">plus-icon</button>
-                                </gol>
-                                <gcol id="cardButnCell">
-                                    <button id="cardToss">delete-icon</button>
+                                    <button id="cardButn" class="icomoon-icon-plus"></button>
+                                    <button id="cardToss" class="icomoon-icon-delete"></button>
                                 </gcol>
                             </grow>
                         </grid>
                     </gcol>
                 </grid>
-<grid id="mainGrid">
-                <grow id="formZone">
+            </layer>
+            <layer>
+                <grid id="mainGrid">
+                  <grow id="formZone">
                     <gcol id="formCell">
-                        <grid id="formGrid">
-                            <grow>
-                                <gcol>
-                                    <input id="cardName" placeholder="card"></input>
+                       <grid id="formGrid">
+                           <grow>
+                               <gcol>
+                                  <input id="cardName" placeholder="card"></input>
                                     <section>
                                         <article>
                                             <input id="cardDesc" placeholder=""></input>
                                         </article>
                                     </section>
                                 </gcol>
-                                </grow>
+                                <gcol id="cardButnCell">
+                                    <button id="cardButn"></button>
+                                    <button id="cardToss"></button>
+                                </gcol>
+                            </grow>
                         </grid>
-        </layer>
+            </layer>
     </body>
 </html>

@@ -28,7 +28,7 @@
             if (!!filter && !item.startsWith(filter)){ return };
             let card = document.createElement("card");
             card.innerHTML = item;
-            viewCell.appendChild(card);
+            viewCell.appendChild("card");
         });
     };
 
@@ -42,9 +42,7 @@
 
         if (nameText < 2)
         {
-
             alert("try again... invalid card name!");
-
             return;
         };
 
@@ -63,8 +61,22 @@
         refresh( nameText );
     });
 
+*/ to remove a card */
+    document.getElementByClassName("cardButnToss").addEventListener("click", function()
+    {
+        let cardButnToss = document.getElementByClassName("cardButnToss");
+        let cardName = document.getElementsById("cardName");
+        localStorage.removeItem( this.onclick("cardName"), memory );
+        
+        return;
+        
+    };
+
 
 
     refresh();
 
-return();
+    };
+
+
+    
