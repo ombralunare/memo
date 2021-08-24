@@ -64,10 +64,11 @@
 */ to remove a card */
     document.getElementByClassName("cardButnToss").addEventListener("click", function()
     {
-        let cardButnToss = document.getElementByClassName("cardButnToss");
+        let cardButnToss = localStorage.removeItem( this.onclick("cardName"), memory ); 
         let cardName = document.getElementsById("cardName");
-        localStorage.removeItem( this.onclick("cardName"), memory );
         
+        
+        refresh();
         return;
         
     };
