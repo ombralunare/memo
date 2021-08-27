@@ -17,6 +17,38 @@
 
 
 
+
+
+    function setMemory( data )
+    {
+        let memory = getMemory();
+        Object.assign(memory,data);
+
+        memory = btoa( JSON.stringify(memory) );
+        localStorage.setItem("memory", memory);
+
+        return memory;
+    };
+
+
+
+
+
+    function ripMemory( item )
+    {
+        let memory = getMemory();
+        delete memory[item];
+
+        memory = btoa( JSON.stringify(memory) );
+        localStorage.setItem("memory", memory);
+
+        return memory;
+    };
+
+
+
+
+
     function refresh( filter )
     {
         let viewCell = document.getElementById("viewCell");
@@ -27,10 +59,35 @@
         {
             if (!!filter && !item.startsWith(filter)){ return };
             let card = document.createElement("card");
-            card.innerHTML = item;
-            viewCell.appendChild("card");
+
+            card.title = item;
+            card.innerHTML = // html text
+            `<grid class="cardItemGrid">
+                <grow>
+                    <gcol class="cardTextCell">
+                        ${item}
+                    </gcol>
+                    <gcol class="cardButnCell">
+                        <button class="tossCard">
+                            <i class="icon-cross"></i>
+                        </button>
+                    </gcol>
+                </grow>
+             </grid>`;
+
+            let toss = card.getElementsByClassName("tossCard")[0];
+            toss.target = item;
+
+            toss.addEventListener("click", function()
+            {
+                ripMemory(this.target);
+                refresh();
+            });
+
+            viewCell.appendChild(card);
         });
     };
+
 
 
 
@@ -50,9 +107,7 @@
 
         if ((typeof memory[ nameText ]) == "undefined")
         {
-            memory[ nameText ] = "";
-            memory = btoa( JSON.stringify(memory) );
-            localStorage.setItem("memory", memory);
+            setMemory({[nameText]:""});
             cardName.value = "";
             refresh();
             return;
@@ -61,23 +116,8 @@
         refresh( nameText );
     });
 
-*/ to remove a card */
-    document.getElementByClassName("cardButnToss").addEventListener("click", function()
-    {
-        let cardButnToss = localStorage.removeItem( this.onclick("cardName"), memory ); 
-        let cardName = document.getElementsById("cardName");
-        
-        
-        refresh();
-        return;
-        
-    };
+
 
 
 
     refresh();
-
-    };
-
-
-    
