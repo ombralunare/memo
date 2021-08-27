@@ -10,7 +10,7 @@ html,body
     height: 100%;
     margin: 0px;
     font-size: 1.5vw;
-    
+
 }
 
 
@@ -19,10 +19,11 @@ body
     background-image: url("bg.jpg");
     background-size: cover;
     text-align: center;
+    overflow: hidden;
 }
 
 
-#layer
+layer
 {
     display: block;
     position: absolute;
@@ -30,22 +31,23 @@ body
     width: 100%;
     height: 100%;
     background-color: hsla(0,0%,20%,0.85);
+    overflow: auto;
 }
 
 
-#grid
+grid
 {
     display: inline-table;
 }
 
 
-#grow
+grow
 {
     display: table-row;
 }
 
 
-#gcol
+gcol
 {
     display: table-cell;
     text-align: center;
@@ -91,72 +93,46 @@ body
 }
 
 
-#cardButnCell
+#searchCell
 {
-    width: 1rem;
-    height: 1rem;
-    padding: 1rem;
+    width: auto;
+}
+
+#buttonCell
+{
+    width: 6rem;
+    padding-left:1rem;
 }
 
 
 button
 {
     display: inline-block;
-    width: 1rem;
-    height: 1rem;
     border: 0.2rem solid hsla(220,100%,60%,1);
+    border-radius: 3rem;
     background-color: hsla(220,100%,60%,0.3);
-    padding: 1rem;
+    font-size: 3rem;
+    line-height: 3rem;
+    padding: 1.3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.1rem;
     color: white;
     font-weight: bold;
-    border-radius: 1rem;
     cursor: pointer;
 }
 
-button i
+
+#cardToss
 {
-    font-size: 35px;
-    font-weight: bold;
+    color: red;
 }
-
-
-#button-cardToss
-{
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    border: 0.2rem solid hsla(220,100%,60%,1);
-    background-color: hsla(220,100%,60%,0.3);
-    padding: 1rem;
-    color: white;
-    font-weight: bold;
-    border-radius: 1rem;
-    cursor: pointer;
-} 
 
 
 #cardName
 {
     display: inline-block;
     outline: none;
-    padding: 1.5px;
-    padding-left: 3rem;
-    width: 100%;
-    height: 6rem;
-    background-color: hsla(220,100%,60%,0.3);
-    color: white;
-    font-size: 3rem;
-    font-weight: bold;
-    border: 0.2rem solid hsla(220,100%,60%,1);
-    border-radius: 3rem;
-}
-
-
-#cardDesc
-{
-    display: inline-block;
-    outline: none;
-    padding: 1.5px;
+    padding: 1rem;
     padding-left: 3rem;
     width: 100%;
     height: 6rem;
@@ -182,12 +158,10 @@ card
 {
     display: block;
     width: 100%;
-    height:1rem;
     background-color: hsl(0,0%,90%);
     border: 0.2rem solid hsla(220,0%,60%,1);
     border-radius: 0.5rem;
     box-shadow: 0rem 0rem 1rem hsla(0,0%,0%,1);
-    cursor: pointer;
     padding: 1.5rem;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2.5rem;
@@ -198,4 +172,31 @@ card
 card:hover
 {
     background-color: hsl(0,0%,100%);
+}
+
+.cardItemGrid
+{
+    width: 100%;
+}
+
+.cardTextCell
+{
+    width: auto;
+}
+
+.cardButnCell
+{
+    width: 3rem;
+}
+
+.cardTextCell
+{
+    text-align: left;
+}
+
+.tossCard
+{
+    border-color: #777;
+    color: #777;
+    background-color: unset;
 }
