@@ -31,9 +31,7 @@
     };
 
 
-
-
-
+   
     function ripMemory( item )
     {
         let memory = getMemory();
@@ -89,7 +87,7 @@
     };
 
 
-
+    
 
 
     document.getElementById("cardButn").addEventListener("click", function()
@@ -121,3 +119,14 @@
 
 
     refresh();
+
+
+//createElementbyID()   - audio href?
+
+var audioElement = new Audio(url);  // creates audio element for alarm //
+audioElement.createEventListener('loadeddata', ()=>
+    {
+        audioElement.play()
+        let duration = audioElement.duration;
+    }
+);
