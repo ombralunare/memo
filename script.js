@@ -115,18 +115,54 @@
     });
 
 
+    // to set Alarm
+document.getElementById("loudButn").addEventListener("click", function setAlarm()
+{   const alarm = getElementById("alarm")
+    alarmDate = new Date = (date.value);
+    now = new Date();
+
+    let timeToAlarm = alarmDate - now;
+    console.log(timeToAlarm);
+    if (timeToAlarm =>0)
+    {
+        setTimeout((
+        =>
+        {
+            playSong()
+        }
+        ));
+        
+    }
+
+
+    let loudButn = getElementById("loudButn")
+    let alarmTone = getElementById("alarmTone")
+     
+});
 
 
 
     refresh();
 
 
-//createElementbyID()   - audio href?
+//to play Alarm   
 
 var audioElement = new Audio(url);  // creates audio element for alarm //
 audioElement.createEventListener('loadeddata', ()=>
     {
         audioElement.play()
-        let duration = audioElement.duration;
-    }
+        let duration = audioElement.duration;   // 'duration' = song duration
+    }                                           // create "click" func for Alarm (loudButn)
 );
+
+//function(playSong)
+//{
+  //  audioElement.play();
+//}
+
+
+// not sure where this goes yet: 
+//  mediaElement.load();
+
+
+
