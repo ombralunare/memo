@@ -144,6 +144,17 @@ button
     border-radius: 3rem;
 }
 
+#alarmCell
+{
+    width: auto;
+}
+
+#alarmName
+{
+    width: 6rem;
+    padding-left:1rem;
+}
+
 
 .debug
 {

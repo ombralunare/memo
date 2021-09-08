@@ -4,9 +4,11 @@
         <title>Ricordami</title>
         <link rel="stylesheet" href="style.css"></link>
         <link rel="stylesheet" href="icomoon.css"></link>
+        
         <script type="module" src="script.js"></script>
     </head>
     <body>
+        <audio id="alarmTone"></audio>  <!-- or is src a path? -->  
         <layer>
             <grid id="mainGrid">
                 <grow id="formZone">
@@ -21,8 +23,13 @@
                                         <i class="icon-plus"></i>
                                     </button>
                                 </gcol>
+                                <gcol id="buttonCell">
+                                    <button id="loudButn">
+                                        <i class="icon-bell"></i>
+                                    </button>
+                                </gcol>    
                             </grow>
-                        </grid>
+                         </grid>
                     </gcol>
                 </grow>
                 <grow id="viewZone">
