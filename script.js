@@ -1,47 +1,98 @@
 
     function getMemory( item )
     {
-        let memory = localStorage.getItem("memory");
-
-        if (!memory)
-        {
-            memory = {};
-        }
-        else
-        {
+        let memory = ( localStorage.getItem("memory") || btoa("[]") );
             memory = JSON.parse( atob(memory) );
+
+        return ( isNaN(item) ? memory : memory[item] );
+    };
+
+
+
+
+
+    function setMemory( data, indx)
+    {
+
+        let memory = getMemory();
+        indx = (indx || memory.length);
+        memory[indx] = data;
+        memory = btoa( JSON.stringify(memory) );
+        localStorage.setItem("memory", memory);
+
+        return getMemory();
+    };
+
+
+
+    function ripMemory( indx )
+    {
+        let memory = getMemory();
+        let result = [];
+
+        memory.forEach((obj,idx)=>
+        {
+            if (idx === indx){ return };
+            result.push(obj);
+        });
+
+        memory = btoa( JSON.stringify(result) );
+        localStorage.setItem("memory", memory);
+
+        return getMemory();
+    };
+
+
+
+
+
+    function parlay( card )
+    {
+        let layr = document.createElement("layer");
+        layr.innerHTML = document.getElementById("confTemplate").innerHTML;
+        let form = layr.getElementsByTagName("form")[0];
+        let kids = [].slice.call(form.children);
+        let conf = card.config;
+        let dump = form.getElementsByClassName("dump")[0];
+        let save = form.getElementsByClassName("save")[0];
+        let bond = {parent:card, config:form, parlay:layr};
+
+        kids.forEach((node)=>
+        {
+            let name = node.name;
+            if (!name){ return };
+            node.value = conf[name];
+        });
+
+        form.onsubmit = function(event)
+        {
+            event.preventDefault();
         };
 
-        return ( item ? memory[item] : memory );
-    };
+        dump.onclick = function()
+        {
+            ripMemory(this.parent.target);
+            this.parlay.parentNode.removeChild(this.parlay);
+            refresh();
+        }
+        .bind(bond);
 
+        save.onclick = function()
+        {
+            let config = {};
+            Object.keys(this.parent.config).forEach((key)=>
+            {
+                let val = this.config[key].value;
+                config[key] = val;
+            });
+            setMemory(config, this.parent.target);
+            this.parlay.parentNode.removeChild(this.parlay);
+            refresh();
+        }
+        .bind(bond);
 
-
-
-
-    function setMemory( data )
-    {
-        let memory = getMemory();
-        Object.assign(memory,data);
-
-        memory = btoa( JSON.stringify(memory) );
-        localStorage.setItem("memory", memory);
-
-        return memory;
-    };
-
-
-   
-    function ripMemory( item )
-    {
-        let memory = getMemory();
-        delete memory[item];
-
-        memory = btoa( JSON.stringify(memory) );
-        localStorage.setItem("memory", memory);
-
-        return memory;
-    };
+        document.body.appendChild(layr);
+    }
 
 
 
@@ -53,33 +104,20 @@
         viewCell.innerHTML = "";
         let memory = getMemory();
 
-        Object.keys(memory).forEach((item)=>
+        memory.forEach((obj,idx)=>
         {
-            if (!!filter && !item.startsWith(filter)){ return };
+            if (!obj || (!!filter && !item.startsWith(filter))){ return };
             let card = document.createElement("card");
 
-            card.title = item;
-            card.innerHTML = // html text
-            `<grid class="cardItemGrid">
-                <grow>
-                    <gcol class="cardTextCell">
-                        ${item}
-                    </gcol>
-                    <gcol class="cardButnCell">
-                        <button class="tossCard">
-                            <i class="icon-cross"></i>
-                        </button>
-                    </gcol>
-                </grow>
-             </grid>`;
+            card.title = obj.name;
+            card.target = idx;
+            card.config = obj;
+            card.innerHTML = document.getElementById("cardTemplate").innerHTML;
+            card.getElementsByClassName("cardTextCell")[0].innerHTML = obj.name;
 
-            let toss = card.getElementsByClassName("tossCard")[0];
-            toss.target = item;
-
-            toss.addEventListener("click", function()
+            card.addEventListener("click", function()
             {
-                ripMemory(this.target);
-                refresh();
+                parlay(this);
             });
 
             viewCell.appendChild(card);
@@ -87,7 +125,7 @@
     };
 
 
-    
+
 
 
     document.getElementById("cardButn").addEventListener("click", function()
@@ -101,68 +139,88 @@
             return;
         };
 
-        let memory = getMemory();
+        setMemory
+        ({
+            name: nameText,
+            desc: "",
+            date: "",
+            time: "",
+            days: "0123456",
+            play: "/sounds/hellcat.opus",
+            seek: "",
+            loud: 1,
+            loop: true,
+            live: true,
+        });
 
-        if ((typeof memory[ nameText ]) == "undefined")
-        {
-            setMemory({[nameText]:""});
-            cardName.value = "";
-            refresh();
-            return;
-        };
-
-        refresh( nameText );
+        cardName.value = "";
+        refresh();
     });
 
 
-    // to set Alarm
-document.getElementById("loudButn").addEventListener("click", function setAlarm()
-{   const alarm = getElementById("alarm")
-    alarmDate = new Date = (date.value);
-    now = new Date();
 
-    let timeToAlarm = alarmDate - now;
-    console.log(timeToAlarm);
-    if (timeToAlarm =>0)
+
+    window.alarm = function alarm(conf)
     {
-        setTimeout((
-        =>
+        let resl = new Audio(conf.play);
+        resl.loop = conf.loop;
+        resl.layer = document.createElement("layer");
+        resl.layer.audio = resl;
+
+        resl.layer.innerHTML = document.getElementById("alarmTemplate").innerHTML;
+        resl.layer.getElementsByClassName("alarmFace")[0].innerHTML = conf.name;
+        resl.layer.addEventListener("click", function()
         {
-            playSong()
-        }
-        ));
-        
+            this.audio.pause();
+        });
+
+        document.body.appendChild(resl.layer);
+
+        resl.addEventListener("canplay", function()
+        {
+            this.parlay = document.createElement("layer");
+            this.parlay.audio = this;
+            this.play();
+        });
+
+        resl.addEventListener("pause", function()
+        {
+            this.layer.parentNode.removeChild(this.layer);
+        });
+
+        return resl;
     }
 
 
-    let loudButn = getElementById("loudButn")
-    let alarmTone = getElementById("alarmTone")
-     
-});
 
+
+    setInterval(function check()
+    {
+        let data = getMemory();
+        let date = new Date();
+        let zone = (date.getTimezoneOffset() * -1);
+        let time = (Math.floor(date.getTime() / 1000) + (zone * 60));
+        let cDay = (date.getDay()+"");
+
+        data.forEach((conf,indx)=>
+        {
+            if (!conf || !conf.time){ return }; // invalid card conf .. can't use this, yet.
+
+            let confDate = (!conf.date ? date : new Date(conf.date));
+            let timeText = (confDate.toISOString().split("T")[0] + "T" + conf.time + ":00.000Z");
+            let confTime = Math.floor((new Date(timeText).getTime()) / 1000);
+            let timeDiff = (confTime - time);
+
+            if (timeDiff === 0){ alarm(conf) }; // now now now!
+        });
+
+
+    },1000);
 
 
     refresh();
 
-
-//to play Alarm   
-
-var audioElement = new Audio(url);  // creates audio element for alarm //
-audioElement.createEventListener('loadeddata', ()=>
+    document.getElementById("welcome").addEventListener("click", function()
     {
-        audioElement.play()
-        let duration = audioElement.duration;   // 'duration' = song duration
-    }                                           // create "click" func for Alarm (loudButn)
-);
-
-//function(playSong)
-//{
-  //  audioElement.play();
-//}
-
-
-// not sure where this goes yet: 
-//  mediaElement.load();
-
-
-
+        this.parentNode.parentNode.removeChild(this.parentNode);
+    });

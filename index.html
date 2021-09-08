@@ -4,11 +4,54 @@
         <title>Ricordami</title>
         <link rel="stylesheet" href="style.css"></link>
         <link rel="stylesheet" href="icomoon.css"></link>
-        
+
         <script type="module" src="script.js"></script>
     </head>
     <body>
-        <audio id="alarmTone"></audio>  <!-- or is src a path? -->  
+
+        <hidden id="cardTemplate">
+            <grid class="cardItemGrid">
+                <grow>
+                    <gcol class="cardTextCell">
+                        Card Title
+                    </gcol>
+                    <!--
+                    <gcol class="cardButnCell">
+                        <button class="tossCard icon-cog"></button>
+                    </gcol>
+                    -->
+                </grow>
+             </grid>
+        </hidden>
+
+        <hidden id="confTemplate">
+            <form id="configForm">
+                <input name="name" type="text" placeholder="name" /><br>
+                <textarea name="desc" placeholder="description" ></textarea><br>
+                <input name="date" type="date" placeholder="date" /><br>
+                <input name="days" type="text" placeholder="1234567" /><br>
+                <input name="time" type="time" placeholder="08:30" /><br>
+                <input name="play" type="text" placeholder="/sounds/hellcat.opus" /><br>
+                <input name="seek" type="text" placeholder="0 - 143.586" /><br>
+                <input name="loud" type="text" placeholder="0.999" /><br>
+                <input name="loop" type="text" placeholder="true" /><br>
+                <input name="live" type="text" placeholder="true" /><br>
+
+                <button class="dump icon-bin"></button>
+                <button class="save icon-floppy-disk"></button>
+            </form>
+        </hidden>
+
+        <hidden id="alarmTemplate">
+            <grid class="alarmDeck">
+                <grow>
+                    <gcol class="alarmFace">
+                        Alarm Name
+                    </gcol>
+                </grow>
+            </grid>
+        </hidden>
+
         <layer>
             <grid id="mainGrid">
                 <grow id="formZone">
@@ -19,21 +62,25 @@
                                     <input id="cardName" placeholder="card"></input>
                                 </gcol>
                                 <gcol id="buttonCell">
-                                    <button id="cardButn">
-                                        <i class="icon-plus"></i>
-                                    </button>
+                                    <button id="cardButn" class="icon-plus"></button>
                                 </gcol>
-                                <gcol id="buttonCell">
-                                    <button id="loudButn">
-                                        <i class="icon-bell"></i>
-                                    </button>
-                                </gcol>    
                             </grow>
                          </grid>
                     </gcol>
                 </grow>
                 <grow id="viewZone">
                     <gcol id="viewCell">
+                    </gcol>
+                </grow>
+            </grid>
+        </layer>
+
+        <layer>
+            <grid id="welcome">
+                <grow>
+                    <gcol class="welcome">
+                        <h1>Ricordami v1.0.1</h1>
+                        <small>click to continue</small>
                     </gcol>
                 </grow>
             </grid>
